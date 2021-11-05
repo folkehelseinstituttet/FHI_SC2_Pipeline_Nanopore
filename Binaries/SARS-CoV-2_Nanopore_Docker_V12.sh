@@ -329,7 +329,7 @@ startdir2=$(pwd)
 runname=${startdir2##*/}
 cd "${startdir2}/${runname}_summaries"
 Rscript /home/docker/Scripts/CSAK_csv_merger_Nanopore_docker.R
-Rscript /home/docker/Scripts/CSAK_NoiseExtractor_docker.R c8
+#Rscript /home/docker/Scripts/CSAK_NoiseExtractor_docker.R c8
 # input filer *NextcladeAndPangolin.csv og *_summaries.csv output *summaries_and_Pangolin.csv
 
 mkdir Frameshift
