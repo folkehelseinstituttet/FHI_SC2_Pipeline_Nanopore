@@ -71,6 +71,7 @@ RUN Rscript -e "install.packages(c('doSNOW', \
 'progress','foreach','parallel', 'pdftools', 'doParallel', \
 'BiocManager', 'ggplot2', 'seqinr', 'xgboost', 'reshape2', 'httr','phangorn','ggpubr' ,'ape','readxl', 'geomnet','rvest', 'tidyverse','writexl','nnet', 'stringr', 'devtools'))"
 RUN Rscript -e "devtools::install_github('sctyner/geomnet')"
+RUN Rscript -e "devtools::install_version('rvcheck',version='0.1.8')"
 RUN rm -rf /var/lib/apt/lists/* \
     && rm /usr/bin/gcc /usr/bin/gcc-ar /usr/bin/gcc-nm /usr/bin/gcc-ranlib \
     && ln /usr/bin/gcc-nm-9 /usr/bin/gcc-nm \
@@ -78,7 +79,6 @@ RUN rm -rf /var/lib/apt/lists/* \
     && ln /usr/bin/gcc-9 /usr/bin/gcc \
     && ln /usr/bin/gcc-ranlib-9 /usr/bin/gcc-ranlib \
     && ln -s /home/docker/miniconda3/lib/libcrypto.so.1.1 /home/docker/miniconda3/lib/libcrypto.so.1.0.0
-
 RUN Rscript -e "BiocManager::install(c('msa','GenomicAlignments','ggtree'))"
 COPY CommonFiles/ /home/docker/CommonFiles/
 COPY Scripts/ /home/docker/Scripts/
