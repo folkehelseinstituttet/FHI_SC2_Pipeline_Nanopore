@@ -345,12 +345,13 @@ Rscript /home/docker/Scripts/CSAK_QCPlotter_Nanopore_docker.R
 Rscript /home/docker/Scripts/CoronaTree.R
 
 mv /home/docker/Fastq/*aligned.fasta ${startdir2}/${runname}_summaries/
+cp /home/docker/Fastq/Tree.pdf ${startdir2}/${runname}_summaries/${runname}_tree.pdf
 
-mv /home/docker/Fastq/Tree.pdf ${startdir2}/${runname}_summaries/${runname}_tree.pdf
+#mv /home/docker/Fastq/Tree.pdf ${startdir2}/${runname}_summaries/${runname}_tree.pdf
+
 Rscript /home/docker/Scripts/CoverageCalculator.R
 
-
-#rm /home/docker/Fastq/*.fasta
+rm /home/docker/Fastq/*.fasta
 rm /home/docker/Fastq/*.csv
 rm /home/docker/Fastq/primers.bed
 rm -r /home/docker/Fastq/temp/
