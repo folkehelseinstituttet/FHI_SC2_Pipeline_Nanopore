@@ -274,6 +274,7 @@ cd "${startdir2}"
 ### Lager samlet fasta for hele runnet
 cd "${startdir2}/${runname}_summaries/fasta"
 cat *.fasta  > ${runname}.fa
+cp ${runname}.fa ${startdir2}/${runname}_summaries/${runname}.fa
 cd "${startdir2}"
 
 
