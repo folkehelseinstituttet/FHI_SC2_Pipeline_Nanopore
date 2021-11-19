@@ -272,7 +272,7 @@ cd "${startdir2}"
 
 ### Lager samlet fasta for hele runnet
 cd "${startdir2}/${runname}_summaries/fasta"
-cat *.fasta  > ${runname}.fa
+cat *.fasta  > ${startdir2}/${runname}_summaries/${runname}.fa #Copy to main folder
 cd "${startdir2}"
 
 
