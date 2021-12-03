@@ -44,9 +44,28 @@ if [ ${1} == "ArticV4" ]; then
 	cp /home/docker/CommonFiles/artic-ncov2019/primer_schemes/nCoV-2019/V4/nCoV-2019.primer.bed /home/docker/Fastq/primers.bed
 fi
 
+if [ ${1} == "ArticV4.2" ]; then
+	primer_schemes=/home/docker/CommonFiles/artic-ncov2019/primer_schemes
+	schemes_sample=nCoV-2019/V4.2
+	SpikeRef=/home/docker/CommonFiles/artic-ncov2019/primer_schemes/nCoV-2019/V3.2/nCoV-2019.spike.fa
+	min=200
+	max=700
+	cp /home/docker/CommonFiles/artic-ncov2019/primer_schemes/nCoV-2019/V4.2/nCoV-2019.primer.bed /home/docker/Fastq/primers.bed
+fi
+
+if [ ${1} == "MidnightV1.2" ]; then
+	primer_schemes=/home/docker/CommonFiles/artic-ncov2019/primer_schemes
+	schemes_sample=nCoV-2019/MidNightV1.2
+	SpikeRef=/home/docker/CommonFiles/artic-ncov2019/primer_schemes/nCoV-2019/MidNightV1.2/nCoV-2019.spike.fa
+	min=500
+	max=1800
+	cp /home/docker/CommonFiles/artic-ncov2019/primer_schemes/nCoV-2019/MidNightV1.2/nCoV-2019.bed /home/docker/Fastq/primers.bed
+
+fi
+
 
 if [[ ${1} ]]; then  
-if [ ${1} != "ArticV3" ] && [ ${1} != "Midnight" ] && [ ${1} != "ArticV4" ]; then
+if [ ${1} != "ArticV3" ] && [ ${1} != "Midnight" ] && [ ${1} != "ArticV4" ] && [ ${1} != "ArticV4.2" ] && [ ${1} != "MidnightV1.2" ]; then
        echo "
   _  _ ___ _ 
  | \| | _ ) |
@@ -54,7 +73,7 @@ if [ ${1} != "ArticV3" ] && [ ${1} != "Midnight" ] && [ ${1} != "ArticV4" ]; the
  |_|\_|___(_)
 
             NÅ SKREV DU FEIL 
-            Du skrev ${1} som input istedenfor ArticV3, ArticV4 eller Midnight 
+            Du skrev ${1} som input istedenfor ArticV3, ArticV4, ArtticV4.2, Midnight eller MidnightV1.2 
 #############################################################################"
         exit 1
     else  
@@ -76,7 +95,7 @@ else
  | .  | _ \_|
  |_|\_|___(_)
  
-            Du har glemt å skrive ArticV3, ArticV4 eller Midnight 
+            Du har glemt å skrive ArticV3, ArticV4, ArticV4.2, Midnight eller MidnightV1.2 
 #############################################################################  
 
 
