@@ -37,20 +37,11 @@ fi
 
 if [ ${1} == "ArticV4" ]; then
 	primer_schemes=/home/docker/CommonFiles/artic-ncov2019/primer_schemes
-	schemes_sample=nCoV-2019/V4
+	schemes_sample=nCoV-2019/V4.1
 	SpikeRef=/home/docker/CommonFiles/artic-ncov2019/primer_schemes/nCoV-2019/V3.2/nCoV-2019.spike.fa
 	min=200
 	max=700
-	cp /home/docker/CommonFiles/artic-ncov2019/primer_schemes/nCoV-2019/V4/nCoV-2019.primer.bed /home/docker/Fastq/primers.bed
-fi
-
-if [ ${1} == "ArticV4.2" ]; then
-	primer_schemes=/home/docker/CommonFiles/artic-ncov2019/primer_schemes
-	schemes_sample=nCoV-2019/V4.2
-	SpikeRef=/home/docker/CommonFiles/artic-ncov2019/primer_schemes/nCoV-2019/V3.2/nCoV-2019.spike.fa
-	min=200
-	max=700
-	cp /home/docker/CommonFiles/artic-ncov2019/primer_schemes/nCoV-2019/V4.2/nCoV-2019.primer.bed /home/docker/Fastq/primers.bed
+	cp /home/docker/CommonFiles/artic-ncov2019/primer_schemes/nCoV-2019/V4.1/nCoV-2019.primer.bed /home/docker/Fastq/primers.bed
 fi
 
 if [ ${1} == "MidnightV1.2" ]; then
