@@ -10,7 +10,7 @@ Docker-based solution for sequence analysis of SARS-CoV-2 Nanopore samples
 [Midnight](https://www.protocols.io/view/sars-cov2-genome-sequencing-protocol-1200bp-amplic-bwyppfvn)
 
 ## Installation
-<code>git clone https://github.com/garcia-nacho/FHI_SC2_Pipeline_Nanopore</code>  
+<code>git clone https://github.com/folkehelseinstituttet/FHI_SC2_Pipeline_Nanopore</code>  
 <code> cd FHI_SC2_Pipeline_Nanopore</code>   
 <code> docker build -t garcianacho/fhisc2:Nanopore . </code>
  
