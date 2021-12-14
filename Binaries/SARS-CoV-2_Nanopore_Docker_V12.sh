@@ -18,11 +18,11 @@ cd ${startdir}
 
 if [ ${1} == "Midnight" ]; then
 	primer_schemes=/home/docker/CommonFiles/artic-ncov2019/primer_schemes
-	schemes_sample=nCoV-2019/MidNightV1
-	SpikeRef=/home/docker/CommonFiles/artic-ncov2019/primer_schemes/nCoV-2019/MidNightV1/nCoV-2019.spike.fa
+	schemes_sample=nCoV-2019/MidNight
+	SpikeRef=/home/docker/CommonFiles/artic-ncov2019/primer_schemes/nCoV-2019/MidNight/nCoV-2019.spike.fa
 	min=500
 	max=1800
-	cp /home/docker/CommonFiles/artic-ncov2019/primer_schemes/nCoV-2019/MidNightV1/nCoV-2019.bed /home/docker/Fastq/primers.bed
+	cp /home/docker/CommonFiles/artic-ncov2019/primer_schemes/nCoV-2019/MidNight/nCoV-2019.bed /home/docker/Fastq/primers.bed
 
 fi
 
