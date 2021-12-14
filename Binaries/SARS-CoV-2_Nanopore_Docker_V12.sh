@@ -76,7 +76,7 @@ else
  | .  | _ \_|
  |_|\_|___(_)
  
-            Du har glemt å skrive ArticV3, ArticV4, ArticV4.2, Midnight eller MidnightV1.2 
+            Du har glemt å skrive ArticV3, ArticV4, ArticV4.2, Midnight 
 #############################################################################  
 
 
