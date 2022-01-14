@@ -46,7 +46,7 @@ fi
 
 
 if [[ ${1} ]]; then  
-if [ ${1} != "ArticV3" ] && [ ${1} != "Midnight" ] && [ ${1} != "ArticV4" ] && [ ${1} != "ArticV4.2" ] ; then
+if [ ${1} != "ArticV3" ] && [ ${1} != "Midnight" ] && [ ${1} != "ArticV4" ] ; then
        echo "
   _  _ ___ _ 
  | \| | _ ) |
@@ -54,7 +54,7 @@ if [ ${1} != "ArticV3" ] && [ ${1} != "Midnight" ] && [ ${1} != "ArticV4" ] && [
  |_|\_|___(_)
 
             NÅ SKREV DU FEIL 
-            Du skrev ${1} som input istedenfor ArticV3, ArticV4, ArtticV4.2, Midnight 
+            Du skrev ${1} som input istedenfor ArticV3, ArticV4, Midnight 
 #############################################################################"
         exit 1
     else  
@@ -76,7 +76,7 @@ else
  | .  | _ \_|
  |_|\_|___(_)
  
-            Du har glemt å skrive ArticV3, ArticV4, ArticV4.2, Midnight 
+            Du har glemt å skrive ArticV3, ArticV4, Midnight 
 #############################################################################  
 
 
@@ -213,7 +213,7 @@ do
 	echo "Average_depth:, ${wee1115}" >> ${dir%/}_summary.csv
 	echo "Percent_covered_above_depth=19:, ${coverage_breath}" >> ${dir%/}_summary.csv
 	echo "Percent_covered_above_depth=9:, n.a." >> ${dir%/}_summary.csv
-	echo "Script_name:, ${script_name1}" >> ${dir%/}_summary.csv
+	echo "Script_name:, ${script_name1}_${schemes_sample} " >> ${dir%/}_summary.csv
 
 	cd ${fastq_pass}
 done
