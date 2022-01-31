@@ -42,7 +42,7 @@ registerDoSNOW(cluster.cores)
 out.par<-foreach(i=1:length(bamfiles), .verbose=FALSE, .options.snow = opts) %dopar%{
   
   try(system(paste("FINex -f ",bamfiles[i], " > ",
-                   gsub(".*/",results,gsub("\\.bam", "_NoisExtractorResult2.tsv",bamfiles[i])), sep = "")))
+                   gsub(".*/",results,gsub("\\.bam", "_NoisExtractorResult2.tsv",bamfiles[i])), sep = ""),show.output.on.console = FALSE))
   
 }
 stopCluster(cluster.cores)
@@ -62,10 +62,26 @@ summary<-list.files(input.folder,full.names = TRUE, pattern = "_NextcladeAndPang
 summary<-read.csv(summary, sep = "\t")
 
 
-pb<-txtProgressBar(min = 1, max = length(results), initial = 1)
-try(rm(out))
-for (i in 1:length(results)) {
-  setTxtProgressBar(pb, i)
+samp<-c(1:length(results))
+
+pb <- progress_bar$new(
+  format = "Index: :samp.pb [:bar] :elapsed | eta: :eta",
+  total = length(results),    # 100 
+  width = 60)
+
+
+progress <- function(n){
+  pb$tick(tokens = list(samp.pb = samp[n]))
+} 
+
+opts <- list(progress = progress)
+
+
+cluster.cores<-makeCluster(cores)
+registerDoSNOW(cluster.cores)
+
+out.par<-foreach(i=1:length(results), .verbose=FALSE, .options.snow = opts) %dopar%{
+  
   dummy<-read.csv(results[i],sep = "\t", header = FALSE)
   dummy<-dummy[,c(1:3)]
   colnames(dummy)<-c("Base","Noise","Reads")
@@ -76,13 +92,14 @@ for (i in 1:length(results)) {
   dummy$Reads[which(is.na(dummy$Reads))]<-0
   
   dummy$Sample<-gsub("_.*","",gsub(".*/","",results[i]))
-  if(!exists("out")){
-    out<-dummy
-  }else{
-    out<-rbind(out,dummy)
-  }
+  return(dummy)
   
 }
+
+stopCluster(cluster.cores)
+
+out<-do.call("rbind",out.par)
+rm(out.par)
 
 primers$Amplicon<-NA
 primers$Amplicon[grep("RIGHT", primers$V4)]<-gsub("_RIGHT","",primers$V4[grep("RIGHT", primers$V4)])
