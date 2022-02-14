@@ -287,9 +287,9 @@ nextclade --input-fasta ${startdir2}/${runname}_summaries/fasta/${runname}.fa --
 nextalign  --sequences=${startdir2}/${runname}_summaries/fasta/${runname}.fa --reference=/home/docker/CommonFiles/reference_nc.fasta \
  --genemap=/home/docker/CommonFiles/genemap.gff --genes=E,M,N,ORF1a,ORF1b,ORF3a,ORF6,ORF7a,ORF7b,ORF8,ORF9b,S --output-dir=/home/docker/Fastq --output-basename=${runname}
 
-
+Rscript /home/docker/Scripts/SpikeMissing.R
 mv ${startdir2}/${runname}_summaries/fasta/${runname}_pangolin_out.csv ${startdir2}/${runname}_summaries/
-
+mv /home/docker/Fastq/MissingAA.Spike.xlsx ${basedir}/${runname}_summaries/${runname}_MissingAA.Spike.xlsx
 cd "${startdir2}/${runname}_summaries/"
 
 nextclade_output_converter.py ${runname}_Nextclade.results.csv >> ${runname}_Nextclade.results2.csv
