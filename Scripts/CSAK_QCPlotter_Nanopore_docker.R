@@ -19,7 +19,7 @@ name<-gsub("_.*","",gsub(".*/","", summaries))
 Plate<- list.files(input.folder, pattern = ".*\\.xlsx", full.names = TRUE, recursive = TRUE)
 if(length(Plate[grep("FrameShift",Plate)])==1) Plate<-Plate[-grep("FrameShift",Plate)]
 if(length(Plate[grep("NoisExtractor",Plate)])==1) Plate<-Plate[-grep("NoisExtractor",Plate)]
- 
+if(length(Plate[grep("MissingAA.Spike.xlsx",Plate)])==1) Plate<-Plate[-grep("MissingAA.Spike.xlsx",Plate)] 
 
 Plate<-read_xlsx(Plate, skip = 1)
 Plate<-Plate[-which(is.na(Plate$Barcode)),c("Posisjon  på PCR-plate", "SequenceID", names(Plate)[5])]
