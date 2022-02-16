@@ -135,7 +135,7 @@ ggplot(out.agg)+
   geom_errorbar(aes(y=ReadsN100, x=Amplicon, ymin=ReadsN100, ymax=ReadsN100+SD ))+
   theme_minimal()+
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
-  ylab("Normalized-100 Number of Reads (mean)")+
+  ylab("N100 Num of Reads (mean)")+
   ggtitle(paste("Primer efficiency on", runname))
 
 ggsave(gsub("_NextcladeAndPangolin.csv","_AmpliconNorm100_V4.pdf", runid), width = 12, height = 6)
@@ -167,7 +167,7 @@ ggplot(out.agg)+
   geom_line(aes(Base, ReadsN100), colour="red")+
   geom_ribbon(aes(Base, ReadsN100, ymax=ReadsN100+SD, ymin=ymin), alpha=0.3)+
   theme_minimal()+
-  ylab("Normalized-100 Number of Reads (mean)")+
+  ylab("N100 Num of Reads (mean)")+
   ggtitle(paste("Depth", runname))
 
 ggsave(gsub("_NextcladeAndPangolin.csv","_DepthNorm100.pdf", runid), width = 12, height = 6)
@@ -210,7 +210,7 @@ for (pl in 1:length(sample.uniq)) {
     theme_minimal()+
     theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1, size = 4))+
     ylim(0, max(out.agg2.n$ReadsN100+out.agg2.n$SD))+
-    ylab("Mean Number of Normalized100 Reads")+
+    ylab("Mean Num of Norm100 Reads")+
     ggtitle(sample.uniq[pl])
   
   
@@ -273,7 +273,7 @@ if(length(pdf.list)>1){
  ggplot(out)+
    geom_line(aes(Base, ReadsN100), colour="red")+
    theme_minimal()+
-   ylab("Normalized100 Number of Reads (mean)")+
+   ylab("N100 Num of Reads (mean)")+
    facet_wrap(~SampleLineage)
  
  ggsave(gsub("_NextcladeAndPangolin.csv","_Depth_Norm_Sample.pdf", runid), width = 22, height = 16)
