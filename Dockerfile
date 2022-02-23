@@ -1,4 +1,4 @@
-FROM garcianacho/fhibasenanopore:v1
+FROM garcianacho/fhibasenanopore:22022022
 LABEL maintainer="Nacho Garcia <iggl@fhi.no>"
 
 COPY CommonFiles/ /home/docker/CommonFiles/

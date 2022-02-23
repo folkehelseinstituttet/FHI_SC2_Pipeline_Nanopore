@@ -1,7 +1,8 @@
 FROM garcianacho/fhibase:v1
 LABEL maintainer="Nacho Garcia <iggl@fhi.no>"
 
-
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends cmake
 USER docker
 RUN cd /home/docker \
     && wget \
@@ -27,8 +28,10 @@ RUN cd /home/docker \
     && cd /home/docker \
     && git clone https://github.com/artic-network/fieldbioinformatics \
     && cd fieldbioinformatics \
-    && conda env create -f environment.yml
-    
+    && conda env create -f environment.yml 
+USER root
+RUN Rscript -e "install.packages('seqinr')"
+USER docker    
 RUN /bin/bash -c ". activate artic && \
     cd /home/docker/fieldbioinformatics && \
     python setup.py install"
@@ -36,7 +39,7 @@ RUN /bin/bash -c ". activate artic && \
 USER root
 RUN Rscript -e "install.packages(c('doSNOW', \
 'progress','foreach','parallel', 'pdftools', 'doParallel', \
-'BiocManager', 'ggplot2', 'seqinr', 'xgboost', 'reshape2', 'httr','phangorn','ggpubr' ,'ape','readxl', 'geomnet','rvest', 'tidyverse','writexl','nnet', 'stringr', 'devtools'))"
+'BiocManager', 'ggplot2', 'xgboost', 'reshape2', 'httr','phangorn','ggpubr' ,'ape','readxl', 'geomnet','rvest', 'tidyverse','writexl','nnet', 'stringr', 'devtools'))"
 RUN Rscript -e "devtools::install_github('sctyner/geomnet')"
 RUN Rscript -e "devtools::install_version('rvcheck',version='0.1.8')"
 RUN rm -rf /var/lib/apt/lists/* \
