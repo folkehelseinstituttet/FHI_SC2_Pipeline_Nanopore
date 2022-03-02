@@ -112,7 +112,8 @@ if(length(bamfiles)>0){
       geom_point(data=subset(df, Reads<20),aes(Base, 0),col="blue", alpha=0.1)+
       #ylim(0,1)+
       theme_minimal()+
-      ggtitle(names)
+      ggtitle(names)+
+      ylab("Minor Frequency")
 
   }
   
