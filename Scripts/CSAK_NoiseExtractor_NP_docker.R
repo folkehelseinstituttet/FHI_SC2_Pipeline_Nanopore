@@ -83,7 +83,7 @@ if(length(bamfiles)>0){
     df$NonMR<-df$Reads*df$Noise
     df$MR<-df$Reads-df$NonMR
     
-    stable.pos<-stable.pos[which(stable.pos %in% df$Base)]
+    #stable.pos<-stable.pos[which(stable.pos %in% df$Base)]
     
     
     genome.position<-as.data.frame(c(1:29903))
