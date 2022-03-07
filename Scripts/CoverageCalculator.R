@@ -174,6 +174,8 @@ ggsave(gsub("_NextcladeAndPangolin.csv","_DepthNorm100.pdf", runid), width = 12,
 
 
 colnames(summary)[1]<-"Sample"
+summary$Sample<-gsub("_.*","",summary$Sample)
+
 out<-merge(out, summary[,c("Sample","lineage")], by="Sample")
 out$SampleLineage<-paste(out$Sample, out$lineage, sep = " / ")
 
