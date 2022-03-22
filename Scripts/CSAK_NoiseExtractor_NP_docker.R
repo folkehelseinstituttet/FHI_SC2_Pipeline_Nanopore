@@ -103,8 +103,27 @@ if(length(bamfiles)>0){
     df$NoiseNP<-0
     df$NoiseNP[which(df$Outlier=="YES")]<-df$FreqMinor[which(df$Outlier=="YES")]
     
+    to.ml<-as.data.frame(t(c(ml.noise.mean, 
+                             ml.noise.sd,
+                             ml.minor.mean,
+                             ml.minor.sd,
+                             ml.noise.q3,
+                             ml.minor.q3,
+                             ml.count.missing,
+                             ml.minor.count,
+                             ml.co)))
+    # ML extraction end --
+    
     
     names<-gsub("\\.sorted.*","",gsub("_S[0-9].*","",gsub("R[0-9].*","",gsub(".*/","",results.files[i]))))
+    to.ml$Sample<-names
+    if(!exists("ml.out")){
+      ml.out<-to.ml
+    }else{
+      ml.out<-rbind(ml.out, to.ml)
+    }
+    
+   
     #names<-gsub("\\.primertrimmed.*","",gsub("_S[0-9].*","",gsub(".*/","",results.files[i])))
     out.plots[[i]]<-ggplot(df)+
       geom_line(aes(Base, NoiseNP))+
@@ -150,5 +169,19 @@ date<-gsub("-","",Sys.Date())
  if(length(pdf.list)>1){
  pdf_combine(pdf.list, output = gsub("_.\\.pdf","_Merged.pdf",pdf.list[1]))
  file.remove(pdf.list)}
-  }
-  
+}
+
+#Classification 
+
+load("/home/docker/CommonFiles/ClassifierNoise_Nanopore_21032022.rda")
+
+samp.list<-ml.out$Sample
+ml.out$Sample<-NULL
+
+predicted<-as.data.frame(predict(model, ml.out))
+colnames(predicted)<-"Predicted"
+predicted$Predicted[which(predicted$Predicted==1)]<-"MIX"
+predicted$Predicted[which(predicted$Predicted==0)]<-"OK"
+predicted$Sample<-samp.list
+
+write.csv(predicted, "/home/docker/Fastq/NoisePrediction.csv", row.names = FALSE)
