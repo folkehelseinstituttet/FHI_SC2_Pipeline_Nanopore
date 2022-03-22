@@ -140,7 +140,7 @@ if(length(bamfiles)>0){
       geom_line(aes(Base, NoiseNP))+
       geom_point(data=subset(df, Outlier=="YES"),aes(Base, NoiseNP),col="red", alpha=0.3)+
       geom_point(data=subset(df, Reads<20),aes(Base, 0),col="blue", alpha=0.1)+
-      #ylim(0,1)+
+      ylim(0,0.501)+
       theme_minimal()+
       ggtitle(names)+
       ylab("Minor Frequency")
@@ -185,7 +185,7 @@ date<-gsub("-","",Sys.Date())
 
 #Classification 
 
-load("/home/docker/CommonFiles/ClassifierNoise_Nanopore_21032022.rda")
+load("/home/docker/CommonFiles/ClassifierNoise_Nanopore_22032022.rda")
 
 samp.list<-ml.out$Sample
 ml.out$Sample<-NULL
