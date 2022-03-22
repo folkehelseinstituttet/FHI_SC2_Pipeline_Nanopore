@@ -192,8 +192,12 @@ ml.out$Sample<-NULL
 
 predicted<-as.data.frame(predict(model, ml.out))
 colnames(predicted)<-"Predicted"
-predicted$Predicted[which(predicted$Predicted==1)]<-"MIX"
-predicted$Predicted[which(predicted$Predicted==0)]<-"OK"
+predicted$Predicted<-as.character(predicted$Predicted)
+
+if(length(which(predicted$Predicted=="1"))>0) predicted$Predicted[which(predicted$Predicted=="1")]<-"MIX"
+if(length(which(predicted$Predicted=="0"))>0) predicted$Predicted[which(predicted$Predicted=="0")]<-"OK"
+
 predicted$Sample<-samp.list
 
-write.csv(predicted, "/home/docker/Fastq/NoisePrediction.csv", row.names = FALSE)
+#write.csv(predicted, paste(results,"NoisePrediction.csv"), row.names = FALSE)
+write_xlsx(predicted, paste(results,"NoisePrediction.xlsx"))
