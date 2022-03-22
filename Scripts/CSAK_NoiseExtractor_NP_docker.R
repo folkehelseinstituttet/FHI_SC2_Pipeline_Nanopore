@@ -103,6 +103,17 @@ if(length(bamfiles)>0){
     df$NoiseNP<-0
     df$NoiseNP[which(df$Outlier=="YES")]<-df$FreqMinor[which(df$Outlier=="YES")]
     
+    # ML test extraction --
+    ml.noise.mean<-mean(df$Noise, na.rm=TRUE)
+    ml.noise.sd<-sd(df$Noise, na.rm=TRUE)
+    ml.minor.mean<-mean(df$FreqMinor, na.rm=TRUE)
+    ml.minor.sd<-sd(df$FreqMinor, na.rm=TRUE)
+    ml.noise.q3<-as.numeric(quantile(df$FreqMinor, na.rm=TRUE)[4])
+    ml.minor.q3<-as.numeric(quantile(df$Noise, na.rm=TRUE)[4])
+    ml.count.missing<- length(which(df$Reads<20))/29903
+    ml.minor.count<- length(which(df$Outlier=="YES"))/29903
+    ml.co <- as.numeric(co)
+    
     to.ml<-as.data.frame(t(c(ml.noise.mean, 
                              ml.noise.sd,
                              ml.minor.mean,
@@ -166,6 +177,7 @@ date<-gsub("-","",Sys.Date())
   }
 
  pdf.list<-list.files(results, full.names = TRUE, pattern = ".*NoisExtractor.*\\.pdf")
+ library("pdftools")
  if(length(pdf.list)>1){
  pdf_combine(pdf.list, output = gsub("_.\\.pdf","_Merged.pdf",pdf.list[1]))
  file.remove(pdf.list)}
