@@ -121,7 +121,7 @@ runname<-gsub("_.*","",gsub(".*/","",list.files(input.folder,full.names = TRUE, 
               ggtitle(paste("Primer efficiency on", runname))
             
 runid<-list.files(input.folder,full.names = TRUE, pattern = "_NextcladeAndPangolin.csv",recursive = TRUE)
-ggsave(gsub("_NextcladeAndPangolin.csv","_AmpliconV4.pdf", runid), width = 12, height = 6)
+ggsave(gsub("_NextcladeAndPangolin.csv","_Amplicon.pdf", runid), width = 12, height = 6)
 
 
 out.agg<-aggregate(ReadsN100~Amplicon, out, FUN=mean)
@@ -138,7 +138,7 @@ ggplot(out.agg)+
   ylab("N100 Num of Reads (mean)")+
   ggtitle(paste("Primer efficiency on", runname))
 
-ggsave(gsub("_NextcladeAndPangolin.csv","_AmpliconNorm100_V4.pdf", runid), width = 12, height = 6)
+ggsave(gsub("_NextcladeAndPangolin.csv","_AmpliconNorm100.pdf", runid), width = 12, height = 6)
             
             
 out.agg<-aggregate(Reads~Base, out, FUN=mean)
@@ -175,6 +175,8 @@ ggsave(gsub("_NextcladeAndPangolin.csv","_DepthNorm100.pdf", runid), width = 12,
 
 colnames(summary)[1]<-"Sample"
 summary$Sample<-gsub("_.*","",summary$Sample)
+summary$Sample<-gsub("/.*","",summary$Sample)
+out$Sample<- gsub("\\.primertrim.*","",out$Sample)
 
 out<-merge(out, summary[,c("Sample","lineage")], by="Sample")
 out$SampleLineage<-paste(out$Sample, out$lineage, sep = " / ")
