@@ -1,6 +1,6 @@
 library(readxl)
 
-input.folder<-"/home/docker/Fastq"
+input.folder<-"/home/docker/Fastq/"
 
 xl.to.read<-list.files(input.folder, pattern = "\\.xlsx", full.names = TRUE)
 fastq<-list.files(input.folder, pattern = "\\.fastq", full.names = TRUE)
