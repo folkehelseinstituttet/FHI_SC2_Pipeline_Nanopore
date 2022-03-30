@@ -15,7 +15,7 @@ Docker-based solution for sequence analysis of SARS-CoV-2 Nanopore samples
  
 ## Running the pipeline (Easy mode)
 
-*ArticV4:*   
+*ArticV4.1:*   
 <code>docker run -it --rm -v $(pwd):/home/docker/Fastq garcianacho/fhisc2:Nanopore SARS-CoV-2_Nanopore_Simplified_Docker_V12.sh ArticV4</code>    
    
 *ArticV3:*   
