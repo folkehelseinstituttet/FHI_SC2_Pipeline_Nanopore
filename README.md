@@ -14,7 +14,7 @@ Docker-based solution for sequence analysis of SARS-CoV-2 Nanopore samples
 <code> cd FHI_SC2_Pipeline_Nanopore</code>   
 <code> docker build -t garcianacho/fhisc2:Nanopore . </code>
  
-## Running the pipeline (Simplified mode)
+## Running the pipeline (Easy mode)
 
 *ArticV4:*   
 <code>docker run -it --rm -v $(pwd):/home/docker/Fastq garcianacho/fhisc2:Nanopore SARS-CoV-2_Nanopore_Simplified_Docker_V12.sh ArticV4</code>    
@@ -39,7 +39,7 @@ The script expects the following folder structure:
 </pre>
 
 
-## Running the pipeline (Advanced mode)
+## Running the pipeline (Raw mode)
 *ArticV4:*   
 <code>docker run -it --rm -v $(pwd):/home/docker/Fastq garcianacho/fhisc2:Nanopore SARS-CoV-2_Nanopore_Docker_V12.sh ArticV4</code>    
    
