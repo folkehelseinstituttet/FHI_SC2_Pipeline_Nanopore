@@ -17,13 +17,13 @@ Docker-based solution for sequence analysis of SARS-CoV-2 Nanopore samples
 ## Running the pipeline (Simplified mode)
 
 *ArticV4:*   
-<code>docker run -it --rm -v $(pwd):/home/docker/Fastq garcianacho/fhisc2:Nanopore SARS-CoV-2_Nanopore_Docker_V12.sh ArticV4</code>    
+<code>docker run -it --rm -v $(pwd):/home/docker/Fastq garcianacho/fhisc2:Nanopore SARS-CoV-2_Nanopore_Simplified_Docker_V12.sh ArticV4</code>    
    
 *ArticV3:*   
-<code>docker run -it --rm -v $(pwd):/home/docker/Fastq garcianacho/fhisc2:Nanopore SARS-CoV-2_Nanopore_Docker_V12.sh ArticV3</code>
+<code>docker run -it --rm -v $(pwd):/home/docker/Fastq garcianacho/fhisc2:Nanopore SARS-CoV-2_Nanopore_Simplified_Docker_V12.sh ArticV3</code>
 
 *Midnight:*   
-<code>docker run -it --rm -v $(pwd):/home/docker/Fastq garcianacho/fhisc2:Nanopore SARS-CoV-2_Nanopore_Docker_V12.sh Midnight</code>
+<code>docker run -it --rm -v $(pwd):/home/docker/Fastq garcianacho/fhisc2:Nanopore SARS-CoV-2_Nanopore_Simplified_Docker_V12.sh Midnight</code>
 
 *Note that older versions of docker might require the flag --privileged and that multiuser systems might require the flag -u 1000 to run*
 
