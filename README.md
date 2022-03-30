@@ -6,7 +6,7 @@ Docker-based solution for sequence analysis of SARS-CoV-2 Nanopore samples
 
 ## Primer schemes supported
 [ArticV3](https://github.com/artic-network/artic-ncov2019/tree/master/primer_schemes/nCoV-2019/V3)   
-[ArticV4](https://github.com/artic-network/artic-ncov2019/tree/master/primer_schemes/nCoV-2019/V4)
+[ArticV4](https://github.com/artic-network/artic-ncov2019/tree/master/primer_schemes/nCoV-2019/V4)   
 [Midnight](https://www.protocols.io/view/sars-cov2-genome-sequencing-protocol-1200bp-amplic-bwyppfvn)
 
 ## Installation
