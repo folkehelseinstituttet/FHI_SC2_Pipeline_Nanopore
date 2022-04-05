@@ -278,10 +278,10 @@ cp ${runname}.fa ${startdir2}/${runname}_summaries/${runname}.fa
 cd "${startdir2}"
 
 
-source activate pangolin
-pangolin --update
-pangolin --usher ${startdir2}/${runname}_summaries/fasta/${runname}.fa --outfile ${startdir2}/${runname}_summaries/fasta/${runname}_pangolin_out.csv #UShER mode on
-conda deactivate
+
+conda update pangolin
+pangolin ${startdir2}/${runname}_summaries/fasta/${runname}.fa -t 8 --outfile ${startdir2}/${runname}_summaries/fasta/${runname}_pangolin_out.csv #UShER mode on
+
 
 nextclade --input-fasta ${startdir2}/${runname}_summaries/fasta/${runname}.fa --output-csv ${startdir2}/${runname}_summaries/${runname}_Nextclade.results.csv
 nextalign  --sequences=${startdir2}/${runname}_summaries/fasta/${runname}.fa --reference=/home/docker/CommonFiles/reference_nc.fasta \

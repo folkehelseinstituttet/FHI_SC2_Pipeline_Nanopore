@@ -19,14 +19,16 @@ RUN cd /home/docker \
     && conda install -c bioconda bedtools \
     && conda install -c bioconda nextalign \
     && conda install seaborn \
-    && conda install -c bioconda -c conda-forge -c defaults pangolin \
+    && git clone https://github.com/cov-lineages/pangolin \
+    && cd pangolin \
+    && conda env create -f environment.yml \
+    && pip install . \
     && pip install seaborn \
     && pip install matplotlib \
     && cd /home/docker \
     && git clone https://github.com/artic-network/fieldbioinformatics \
     && cd fieldbioinformatics \
-    && conda env create -f environment.yml \
-    && conda update pangolin
+    && conda env create -f environment.yml 
 USER root
 RUN Rscript -e "install.packages('seqinr')"
 USER docker    
