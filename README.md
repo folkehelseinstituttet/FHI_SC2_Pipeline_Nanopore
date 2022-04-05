@@ -6,21 +6,39 @@ Docker-based solution for sequence analysis of SARS-CoV-2 Nanopore samples
 
 ## Primer schemes supported
 [ArticV3](https://github.com/artic-network/artic-ncov2019/tree/master/primer_schemes/nCoV-2019/V3)   
-[ArticV4](https://github.com/artic-network/artic-ncov2019/tree/master/primer_schemes/nCoV-2019/V4)   
+[ArticV4.1](https://github.com/artic-network/artic-ncov2019/tree/master/primer_schemes/nCoV-2019/V4)   
 [Midnight](https://www.protocols.io/view/sars-cov2-genome-sequencing-protocol-1200bp-amplic-bwyppfvn)
 
-## Installation
+## Installation / Update
 <code>git clone https://github.com/folkehelseinstituttet/FHI_SC2_Pipeline_Nanopore</code>  
-<code> cd FHI_SC2_Pipeline_Nanopore</code>   
-<code> docker build -t garcianacho/fhisc2:Nanopore . </code>
+<code> docker build -t garcianacho/fhisc2:Nanopore FHI_SC2_Pipeline_Nanopore/ </code>
  
-*Note that building the image for the first time can take up to two hours.* 
- 
-Alternativetly, it is posible to *pull* updated builds from [Dockerhub](https://hub.docker.com/repository/docker/garcianacho/fhisc2):
+## Running the pipeline (Easy mode)
 
-<code>docker pull garcianacho/fhisc2:Nanopore</code>
+*ArticV4.1:*   
+<code>docker run -it --rm -v $(pwd):/home/docker/Fastq garcianacho/fhisc2:Nanopore SARS-CoV-2_Nanopore_Simplified_Docker_V12.sh ArticV4</code>    
+   
+*ArticV3:*   
+<code>docker run -it --rm -v $(pwd):/home/docker/Fastq garcianacho/fhisc2:Nanopore SARS-CoV-2_Nanopore_Simplified_Docker_V12.sh ArticV3</code>
 
-## Running the pipeline
+*Midnight:*   
+<code>docker run -it --rm -v $(pwd):/home/docker/Fastq garcianacho/fhisc2:Nanopore SARS-CoV-2_Nanopore_Simplified_Docker_V12.sh Midnight</code>
+
+*Note that older versions of docker might require the flag --privileged and that multiuser systems might require the flag -u 1000 to run*
+
+The script expects the following folder structure:
+   
+<pre>
+./_   
+  |-ExperimentXX.xlsx
+  |-barcodeX.fastq
+  |-barcodeY.fastq
+  |-barcodeZ.fastq
+  |-...
+</pre>
+
+
+## Running the pipeline (Raw mode)
 *ArticV4:*   
 <code>docker run -it --rm -v $(pwd):/home/docker/Fastq garcianacho/fhisc2:Nanopore SARS-CoV-2_Nanopore_Docker_V12.sh ArticV4</code>    
    
@@ -32,7 +50,7 @@ Alternativetly, it is posible to *pull* updated builds from [Dockerhub](https://
 
 *Note that older versions of docker might require the flag --privileged and that multiuser systems might require the flag -u 1000 to run*
 
-The script expects the following folder structure where the *fastq.gz* files are placed inside independent folders for each Sample
+The script expects the following folder structure where the *.fastq* files are placed inside independent folders for each Sample
    
 <pre>
 ./_   

@@ -300,6 +300,7 @@ rm /home/docker/Fastq/*.fasta
 rm /home/docker/Fastq/*.csv
 rm /home/docker/Fastq/primers.bed
 rm -r /home/docker/Fastq/temp/
+rm /home/docker/Fastq/Tree.pdf
 find . -type f -name "Rplots.pdf" -exec rm -f {} \; 
 conda deactivate
 ###################
