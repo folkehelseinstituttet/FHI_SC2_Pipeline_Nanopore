@@ -19,17 +19,21 @@ RUN cd /home/docker \
     && conda install -c bioconda bedtools \
     && conda install -c bioconda nextalign \
     && conda install seaborn \
-    && conda install -c bioconda -c conda-forge -c defaults pangolin \
+    && conda create -n pangolin \
     && pip install seaborn \
     && pip install matplotlib \
     && cd /home/docker \
     && git clone https://github.com/artic-network/fieldbioinformatics \
     && cd fieldbioinformatics \
-    && conda env create -f environment.yml \
-    && conda update pangolin
+    && conda env create -f environment.yml 
 USER root
 RUN Rscript -e "install.packages('seqinr')"
 USER docker    
+RUN /bin/bash -c ". activate pangolin && \
+    conda install -c bioconda -c conda-forge -c defaults pangolin && \
+    conda update -y pangolin"
+
+
 RUN /bin/bash -c ". activate artic && \
     cd /home/docker/fieldbioinformatics && \
     python setup.py install"
