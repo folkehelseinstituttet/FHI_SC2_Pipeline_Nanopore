@@ -216,6 +216,8 @@ do
 	echo "Script_name:, ${script_name1}_${schemes_sample} " >> ${dir%/}_summary.csv
 
 	cd ${fastq_pass}
+	#samtools mpileup -f /home/docker/CommonFiles/nCoV-2019.reference.fasta ./Grid199/Oppsett269A/Oppsett269A_summaries/bam/25posC2681_N.primertrimmed.rg.sorted.bam -d 100000 -Q 1 -B | ivar consensus -t 0 -m 20 -n N -p /home/docker/Fastq/test.fa
+
 done
 
 mappe="$(pwd)"
