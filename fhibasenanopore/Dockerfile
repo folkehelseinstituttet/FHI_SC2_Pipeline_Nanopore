@@ -18,14 +18,12 @@ RUN cd /home/docker \
     && conda update -n base -c defaults conda \
     && conda install -c bioconda bedtools \
     && conda install -c bioconda nextalign \
-    && conda install seaborn \
     && conda create -n pangolin \
-    && pip install seaborn \
-    && pip install matplotlib \
     && cd /home/docker \
     && git clone https://github.com/artic-network/fieldbioinformatics \
     && cd fieldbioinformatics \
     && conda env create -f environment.yml 
+
 USER root
 RUN Rscript -e "install.packages('seqinr')"
 USER docker    
@@ -53,3 +51,9 @@ RUN rm -rf /var/lib/apt/lists/* \
     && ln -s /home/docker/miniconda3/lib/libcrypto.so.1.1 /home/docker/miniconda3/lib/libcrypto.so.1.0.0
 RUN Rscript -e "BiocManager::install(c('msa','GenomicAlignments','ggtree'))"
 
+USER docker
+RUN pip install seaborn \
+    && pip install matplotlib \
+    && pip install pysam
+
+USER root
