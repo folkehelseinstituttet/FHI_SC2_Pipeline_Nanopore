@@ -43,5 +43,9 @@ rm *results*
 rm *out*
 rm *file*
 rm *age*
+rm /home/docker/Fastq/*.fasta
+rm /home/docker/Fastq/*.insertions.csv
+rm /home/docker/Fastq/*.errors.csv
+
 rm ./${runname}.fa
 echo "Pangolin og Nextclade ferdig"
