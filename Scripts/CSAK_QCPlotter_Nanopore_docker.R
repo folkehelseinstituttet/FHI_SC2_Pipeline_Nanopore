@@ -16,7 +16,7 @@ input.folder<-"/home/docker/Fastq/"   #Docker
 summaries<-list.files(input.folder, pattern = ".*_summaries_and_Pangolin.csv", full.names = TRUE, recursive = TRUE)
 summaries.file<-summaries
 name<-gsub("_.*","",gsub(".*/","", summaries))
-Plate<- list.files(input.folder, pattern = ".*\\.xlsx", full.names = TRUE, recursive = TRUE)
+Plate<- list.files(input.folder, pattern = ".*\\.xlsx", full.names = TRUE)
 if(length(Plate[grep("FrameShift",Plate)])==1) Plate<-Plate[-grep("FrameShift",Plate)]
 if(length(Plate[grep("NoisExtractor",Plate)])==1) Plate<-Plate[-grep("NoisExtractor",Plate)]
 if(length(Plate[grep("MissingAA.Spike.xlsx",Plate)])==1) Plate<-Plate[-grep("MissingAA.Spike.xlsx",Plate)] 
@@ -46,13 +46,13 @@ total$PY<-factor(as.character(total$PY), toupper(letters[c(8:1)]))
 total$name[which(is.na(total$name))]<-"Empty"
 
 total$coverage.bin<-NA
-total$coverage.bin[which(total$Percent.covered.above.depth.9.>=97)]<-">97"
-total$coverage.bin[which(total$Percent.covered.above.depth.9.<97)]<-"<97"
+total$coverage.bin[which(total$Percent.covered.above.depth.19.>=97)]<-">97"
+total$coverage.bin[which(total$Percent.covered.above.depth.19.<97)]<-"<97"
 total$lineage[which(is.na(total$lineage))]<-"--"
 total$ctvalue[which(is.na(total$ctvalue))]<-"--"
 
 ggplot(total, aes(PX, PY, label=paste(gsub("Artic","",name),"\n", lineage, "\n", ctvalue))) +
-  geom_circle(aes(x = PX, y=PY, fill=as.numeric(gsub(",",".",Percent.covered.above.depth.9.))), radius=0.05, alpha=0.4)+
+  geom_circle(aes(x = PX, y=PY, fill=as.numeric(gsub(",",".",Percent.covered.above.depth.19.))), radius=0.05, alpha=0.4)+
   scale_fill_steps(low = "red", high = "green",  breaks=c(97),limits=c(0,100), show.limits=TRUE)+
   #labs(fill = "Coverage")+
   #geom_circle(aes(x = PX, y = PY, colour=as.numeric(gsub(",",".",Percent.covered.above.depth.9.))), radius=0.051)+

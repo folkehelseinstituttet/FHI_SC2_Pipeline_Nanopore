@@ -200,4 +200,4 @@ if(length(which(predicted$Predicted=="0"))>0) predicted$Predicted[which(predicte
 predicted$Sample<-samp.list
 
 #write.csv(predicted, paste(results,"NoisePrediction.csv"), row.names = FALSE)
-write_xlsx(predicted, paste(results,"NoisePrediction.xlsx"))
+write_xlsx(predicted, paste(results,"NoisePrediction.xlsx", sep=""))
