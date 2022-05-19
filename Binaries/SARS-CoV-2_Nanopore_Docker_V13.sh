@@ -295,6 +295,8 @@ nextalign  --sequences=${startdir2}/${runname}_summaries/fasta/${runname}.fa --r
 cp ${startdir2}/${runname}_summaries/${runname}_Nextclade.results.csv ${startdir2}/${runname}_summaries/PreSummaries/${runname}_Nextclade.results.csv
 
 Rscript /home/docker/Scripts/SpikeMissing.R
+Rscript /home/docker/Scripts/InsertionAnalysis.R
+
 mv ${startdir2}/${runname}_summaries/fasta/${runname}_pangolin_out.csv ${startdir2}/${runname}_summaries/
 mv /home/docker/Fastq/MissingAA.Spike.xlsx ${basedir}/${runname}_summaries/${runname}_MissingAA.Spike.xlsx
 cd "${startdir2}/${runname}_summaries/"
