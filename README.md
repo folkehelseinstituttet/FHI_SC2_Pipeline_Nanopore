@@ -1,6 +1,6 @@
 # FHI's SARS-CoV-2 Nanopore Pipeline V13
 Version 13 of the bioinformatic pipeline for SARS-CoV-2 sequence analysis used at the [Folkehelseinstituttet](https://www.fhi.no)    
-:warning: V12 is stil accesible via dockerhub: garcianacho/fhisc2:IlluminaV12
+:warning: V12 is still accesible via dockerhub: garcianacho/fhisc2:IlluminaV12
 
 ## Description
 Docker-based solution for sequence analysis of SARS-CoV-2 Nanopore samples 
@@ -41,13 +41,13 @@ The script expects the following folder structure:
 
 ## Running the pipeline (Raw mode)
 *ArticV4:*   
-<code>docker run -it --rm -v $(pwd):/home/docker/Fastq garcianacho/fhisc2:Nanopore SARS-CoV-2_Nanopore_Docker_V12.sh ArticV4</code>    
+<code>docker run -it --rm -v $(pwd):/home/docker/Fastq garcianacho/fhisc2:Nanopore SARS-CoV-2_Nanopore_Docker_V13.sh ArticV4</code>    
    
 *ArticV3:*   
-<code>docker run -it --rm -v $(pwd):/home/docker/Fastq garcianacho/fhisc2:Nanopore SARS-CoV-2_Nanopore_Docker_V12.sh ArticV3</code>
+<code>docker run -it --rm -v $(pwd):/home/docker/Fastq garcianacho/fhisc2:Nanopore SARS-CoV-2_Nanopore_Docker_V13.sh ArticV3</code>
 
 *Midnight:*   
-<code>docker run -it --rm -v $(pwd):/home/docker/Fastq garcianacho/fhisc2:Nanopore SARS-CoV-2_Nanopore_Docker_V12.sh Midnight</code>
+<code>docker run -it --rm -v $(pwd):/home/docker/Fastq garcianacho/fhisc2:Nanopore SARS-CoV-2_Nanopore_Docker_V13.sh Midnight</code>
 
 *Note that older versions of docker might require the flag --privileged and that multiuser systems might require the flag -u 1000 to run*
 
