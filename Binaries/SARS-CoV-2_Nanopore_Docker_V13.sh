@@ -295,8 +295,18 @@ nextalign  --sequences=${startdir2}/${runname}_summaries/fasta/${runname}.fa --r
 cp ${startdir2}/${runname}_summaries/${runname}_Nextclade.results.csv ${startdir2}/${runname}_summaries/PreSummaries/${runname}_Nextclade.results.csv
 
 Rscript /home/docker/Scripts/SpikeMissing.R
-Rscript /home/docker/Scripts/InsertionAnalysis.R
 
+mkdir nextcladenew
+cp  ${startdir2}/${runname}_summaries/fasta/${runname}.fa nextcladenew  
+source activate nextclade
+nextclade dataset get --name 'sars-cov-2' --output-dir '/home/docker/nc_sars-cov-2'
+nextclade --input-fasta nextcladenew/${runname}.fa --input-dataset /home/docker/nc_sars-cov-2 --output-csv nextcladenew/${runname}_Nextclade.new.results.csv
+conda deactivate
+cp nextcladenew/${runname}_Nextclade.new.results.csv ${runname}_summaries/PreSummaries/
+rm -rf nextcladenew
+
+Rscript /home/docker/Scripts/InsertionAnalysis.R
+cp ${startdir2}/${runname}_summaries/${runname}_Nextclade.results.csv ${startdir2}/${runname}_summaries/PreSummaries/
 mv ${startdir2}/${runname}_summaries/fasta/${runname}_pangolin_out.csv ${startdir2}/${runname}_summaries/
 mv /home/docker/Fastq/MissingAA.Spike.xlsx ${basedir}/${runname}_summaries/${runname}_MissingAA.Spike.xlsx
 cd "${startdir2}/${runname}_summaries/"
@@ -308,19 +318,21 @@ cp ./${runname}_Nextclade.results2.csv ${startdir2}/${runname}_summaries/PreSumm
 awk -F ',' '{print $1 "," $2 "," $4}' ${runname}_pangolin_out.csv > pangolin_out.csv
 awk -F ';' '{print $1 "," $2}' ${runname}_Nextclade.results.csv > nextclade_out2.csv
 
-cat nextclade_out2.csv | sed "s/, /\//g" > nextclade_out3.csv && mv nextclade_out3.csv nextclade_out2.csv #ny fra 22.06.21 Kamilla&Nacho
+#cat nextclade_out2.csv | sed "s/, /\//g" > nextclade_out3.csv && mv nextclade_out3.csv nextclade_out2.csv #ny fra 22.06.21 Kamilla&Nacho
 
-(head -n 1 pangolin_out.csv && tail -n +2 pangolin_out.csv | sort) > pangolin_out_sorted.csv
-(head -n 1 nextclade_out2.csv && tail -n +2 nextclade_out2.csv | sort) > nextclade.out2_sorted.csv
-(head -n 1 ${runname}_Nextclade.results2.csv && tail -n +2 ${runname}_Nextclade.results2.csv | sort) > ${runname}_Nextclade.results2_sorted.csv
+#(head -n 1 pangolin_out.csv && tail -n +2 pangolin_out.csv | sort) > pangolin_out_sorted.csv
+#(head -n 1 nextclade_out2.csv && tail -n +2 nextclade_out2.csv | sort) > nextclade.out2_sorted.csv
+#(head -n 1 ${runname}_Nextclade.results2.csv && tail -n +2 ${runname}_Nextclade.results2.csv | sort) > ${runname}_Nextclade.results2_sorted.csv
 
-paste -d, ${runname}_Nextclade.results2_sorted.csv pangolin_out_sorted.csv > NextcladeAndPangolin.out.csv
-paste -d, NextcladeAndPangolin.out.csv nextclade.out2_sorted.csv > NextcladeAndPangolin.out2.csv
+#paste -d, ${runname}_Nextclade.results2_sorted.csv pangolin_out_sorted.csv > NextcladeAndPangolin.out.csv
+#paste -d, NextcladeAndPangolin.out.csv nextclade.out2_sorted.csv > NextcladeAndPangolin.out2.csv
 
-cp ./NextcladeAndPangolin.out.csv ${startdir2}/${runname}_summaries/PreSummaries/
-cp ./NextcladeAndPangolin.out2.csv ${startdir2}/${runname}_summaries/PreSummaries/
+Rscript /home/docker/Scripts/NC_Pango_merger.R
 
-sed 's/,/\t/g' NextcladeAndPangolin.out2.csv | sed 's/ORF10/ORF10\t/g' > ${runname}_NextcladeAndPangolin.csv
+cp /home/docker/Fastq/NextcladeAndPangolin.out2.csv ${startdir2}/${runname}_summaries/PreSummaries/${runname}_NextcladeAndPangolin.bk.csv
+mv /home/docker/Fastq/NextcladeAndPangolin.out2.csv ./${runname}_NextcladeAndPangolin.csv
+
+#sed 's/,/\t/g' NextcladeAndPangolin.out2.csv | sed 's/ORF10/ORF10\t/g' > ${runname}_NextcladeAndPangolin.csv
 
 rm *results*
 rm *out*
@@ -351,9 +363,9 @@ mkdir Frameshift
 cp ${startdir2}/${runname}_summaries/fasta/${runname}.fa Frameshift/${runname}.fa
 cd Frameshift
 Rscript /home/docker/Scripts/CSAK_Frameshift_Finder_docker.R c8
-mv *.xlsx ${startdir2}/${runname}_summaries
+
 cd ..
-rm -rf ${startdir2}/${runname}_summaries/Frameshift
+
 
 cd "${startdir2}"
 Rscript /home/docker/Scripts/CSAK_QCPlotter_Nanopore_docker.R
@@ -397,6 +409,9 @@ cp /Noise/rawnoise/* ${startdir2}/${runname}_summaries/Coinfections/rawnoise
 mv ${startdir2}/${runname}_summaries/ResultsNoisExtractor* ${startdir2}/${runname}_summaries/Coinfections
 mv ${startdir2}/${runname}_summaries/NoisePrediction* ${startdir2}/${runname}_summaries/Coinfections
 
+rm ${startdir2}/*.fasta
+rm ${startdir2}/*.csv
+
 rm /home/docker/Fastq/*.fasta
 rm /home/docker/Fastq/*.pdf
 rm /home/docker/Fastq/*.csv
@@ -406,14 +421,20 @@ find /home/docker/Fastq/ -type f -name "Rplots.pdf" -exec rm -f {} \;
 conda deactivate
 
 rm -rf ${startdir2}/${runname}_summaries/bam/rawnoise/
+rm ${startdir2}/${runname}_summaries/Frameshift/${runname}.fa
 mv ${startdir2}/${runname}_summaries/${runname}_summaries.csv ${startdir2}/${runname}_summaries/PreSummaries/
 mv ${startdir2}/${runname}_summaries/${runname}_NextcladeAndPangolin.csv ${startdir2}/${runname}_summaries/PreSummaries/
 #mv ${startdir2}/${runname}_summaries/${runname}_summaries_and_Pangolin.csv ${startdir2}/${runname}_summaries/PreSummaries/
+rm ${startdir2}/${runname}_summaries/${runname}_NextcladeAndPangolin.csv
 mv ${startdir2}/${runname}_summaries/MissingAA.Spike.xlsx ${startdir2}/${runname}_summaries/AmpliconQC/${runname}_MissingAA.Spike.xlsx
 mv ${startdir2}/${runname}_summaries/${runname}_tree.pdf ${startdir2}/${runname}_summaries/Coinfections/
 
 mv ${startdir2}/${runname}_summaries/${runname}.aligned.fasta ${startdir2}/${runname}_summaries/fasta/
 mv ${startdir2}/${runname}_summaries/${runname}.fa_Spike.fa ${startdir2}/${runname}_summaries/fasta/
+
+rm ${startdir2}/${runname}_summaries/Recombinants/Inference_dataset.csv
+rm ${startdir2}/${runname}_summaries/Frameshift/*.fasta
+rm ${startdir2}/${runname}_summaries/${runname}_NextcladeAndPangolin.csv
 
 ###################
 ##Avslutter skriptet ###
