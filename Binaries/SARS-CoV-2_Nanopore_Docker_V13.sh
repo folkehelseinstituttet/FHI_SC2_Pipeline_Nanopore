@@ -295,6 +295,10 @@ nextalign  --sequences=${startdir2}/${runname}_summaries/fasta/${runname}.fa --r
 cp ${startdir2}/${runname}_summaries/${runname}_Nextclade.results.csv ${startdir2}/${runname}_summaries/PreSummaries/${runname}_Nextclade.results.csv
 
 Rscript /home/docker/Scripts/SpikeMissing.R
+cp /home/docker/Fastq/*aligned.fasta  ${startdir2}/${runname}_summaries/fasta/
+mv /home/docker/Fastq/*aligned.fasta /home/docker/Fastq/MultifastaForSpike.fasta
+Rscript /home/docker/Scripts/SpikeExtractorv2.R
+cp /home/docker/Fastq/Spike_Aligned.fa ${startdir2}/${runname}_summaries/fasta/${runname}_Spike.fa
 
 mkdir nextcladenew
 cp  ${startdir2}/${runname}_summaries/fasta/${runname}.fa nextcladenew  
@@ -345,9 +349,9 @@ cd "${startdir2}"
 ####### Ekstrahere Spike fra fasta-sekvens #######	START ######
 #input spike ref og fasta-fil
 
-cd "${startdir2}/${runname}_summaries/fasta"
-Rscript /home/docker/Scripts/CSAK_Spike_Extractor_docker.R "${runname}.fa"
-cd "${startdir2}"
+#cd "${startdir2}/${runname}_summaries/fasta"
+#Rscript /home/docker/Scripts/CSAK_Spike_Extractor_docker.R "${runname}.fa"
+#cd "${startdir2}"
 ####### Ekstrahere Spike fra fasta-sekvens #######	SLUTT ######
 
 
@@ -371,7 +375,7 @@ cd "${startdir2}"
 Rscript /home/docker/Scripts/CSAK_QCPlotter_Nanopore_docker.R
 Rscript /home/docker/Scripts/CoronaTree.R
 
-mv /home/docker/Fastq/*aligned.fasta ${startdir2}/${runname}_summaries/
+mv /home/docker/Fastq/*aligned.fasta ${startdir2}/${runname}_summaries/fasta
 cp /home/docker/Fastq/Tree.pdf ${startdir2}/${runname}_summaries/${runname}_tree.pdf
 
 #mv /home/docker/Fastq/Tree.pdf ${startdir2}/${runname}_summaries/${runname}_tree.pdf
