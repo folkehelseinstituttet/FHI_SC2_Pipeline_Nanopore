@@ -305,6 +305,9 @@ cp  ${startdir2}/${runname}_summaries/fasta/${runname}.fa nextcladenew
 source activate nextclade
 nextclade dataset get --name 'sars-cov-2' --output-dir '/home/docker/nc_sars-cov-2'
 nextclade --input-fasta nextcladenew/${runname}.fa --input-dataset /home/docker/nc_sars-cov-2 --output-csv nextcladenew/${runname}_Nextclade.new.results.csv
+cp /home/docker/nc_sars-cov-2/tag.json /home/docker/ncv.json
+ncdb=$(grep "tag" /home/docker/ncv.json | cut -d ":" -f2-)
+ncv=$(nextclade -v)
 conda deactivate
 cp nextcladenew/${runname}_Nextclade.new.results.csv ${runname}_summaries/PreSummaries/
 rm -rf nextcladenew
@@ -383,7 +386,7 @@ Rscript /home/docker/Scripts/CSAK_NoiseExtractor_NP_docker.R
 rm -rf ${startdir2}/${runname}_summaries/rawnoise/
 
 Rscript /home/docker/Scripts/CoverageCalculator.R
-
+Rscript /home/docker/Scripts/LW.file.generator.R ${ncdb} ${ncv}
 #Recombinants
 cd "${startdir2}/${runname}_summaries/"
 mkdir Recombinants
