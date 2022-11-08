@@ -1,11 +1,11 @@
 #LW preparation Illumina
 args=commandArgs(TRUE)
-input<-list.files("/home/docker/Fastq/", pattern ="_summaries_and_Pangolin.*", full.names = TRUE, recursive=TRUE)
+input<-list.files("/home/docker/Fastq/", pattern ="_summaries_and_Pangolin.csv", full.names = TRUE, recursive=TRUE)
 
-results<-read.csv(input, sep = "\t")
+results<-read.csv(input[1], sep = "\t")
 
-results$Pangolin_full<- gsub(",.*","",gsub("Alias of ","",results$description))
-results$Pangolin_full[grep(" ",results$Pangolin_full)]<-NA
+#results$Pangolin_full<- gsub(",.*","",gsub("Alias of ","",results$description))
+#results$Pangolin_full[grep(" ",results$Pangolin_full)]<-NA
 
 colnames(results)[which(colnames(results)=="pangolin_version")]<-"pangolin_SW_version"
 colnames(results)[which(colnames(results)=="version")]<-"pangolin_version"

@@ -386,6 +386,7 @@ Rscript /home/docker/Scripts/CSAK_NoiseExtractor_NP_docker.R
 rm -rf ${startdir2}/${runname}_summaries/rawnoise/
 
 Rscript /home/docker/Scripts/CoverageCalculator.R
+Rscript /home/docker/Scripts/LongPangolinParser.R
 Rscript /home/docker/Scripts/LW.file.generator.R ${ncdb} ${ncv}
 #Recombinants
 cd "${startdir2}/${runname}_summaries/"
