@@ -230,7 +230,8 @@ mkdir "./${runname}_summaries/bam"
 mkdir "./${runname}_summaries/PreSummaries"
 cd ${fastq_pass} 
 
-for d in $(ls -d 25*/)
+for d in $(ls -d */ | grep -v 'summaries')
+#for d in $(ls -d 25*/)
 do 
 	cd ${d}		
 	cp ${d%/}_summary.csv "${startdir2}/${runname}_summaries/"
