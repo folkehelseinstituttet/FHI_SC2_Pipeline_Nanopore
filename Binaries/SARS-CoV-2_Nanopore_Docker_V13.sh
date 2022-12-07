@@ -230,7 +230,7 @@ mkdir "./${runname}_summaries/bam"
 mkdir "./${runname}_summaries/PreSummaries"
 cd ${fastq_pass} 
 
-for d in $(ls -d */ | grep -v 'summaries')
+for d in $(ls -d */)
 #for d in $(ls -d 25*/)
 do 
 	cd ${d}		
