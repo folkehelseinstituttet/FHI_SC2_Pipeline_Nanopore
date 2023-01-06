@@ -86,7 +86,7 @@ else
 fi
 
 
-
+Rscript --vanilla /home/docker/Scripts/Csv2Excel.R
 Rscript --vanilla /home/docker/Scripts/CSAK_Excel_to_tsv_docker.R "${startdir}"
 
 cd $(ls -d */)
