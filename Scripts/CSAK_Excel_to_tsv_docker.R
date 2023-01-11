@@ -16,22 +16,29 @@ library("readxl")
   letter<-letter[-grep("/",letter)]
   letter<-toupper(letter[length(letter)])
   oppsettname<-gsub(".*/","",dirs)
-  if(!"Kommentar" %in% names(df)){
-  
-  if(letter=="A") row.to.get<-c(which(df[,1]=="A1"):which(df[,1]=="H3"))
-  if(letter=="B") row.to.get<-c(which(df[,1]=="A4"):which(df[,1]=="H6"))
-  if(letter=="C") row.to.get<-c(which(df[,1]=="A7"):which(df[,1]=="H9"))
-  if(letter=="D") row.to.get<-c(which(df[,1]=="A10"):which(df[,1]=="H12"))
-  
-  }else{ #48Cells
+  if(length(grep(".csv$", files))<1){
     
-    if(letter=="A") row.to.get<-grep("Flowcell 1", df$Kommentar)
-    if(letter=="B") row.to.get<-grep("Flowcell 2", df$Kommentar)
-    if(letter=="C") row.to.get<-grep("Flowcell 3", df$Kommentar)
-    if(letter=="D") row.to.get<-grep("Flowcell 4", df$Kommentar)
+    if(!"Kommentar" %in% names(df)){
+      
+      if(letter=="A") row.to.get<-c(which(df[,1]=="A1"):which(df[,1]=="H3"))
+      if(letter=="B") row.to.get<-c(which(df[,1]=="A4"):which(df[,1]=="H6"))
+      if(letter=="C") row.to.get<-c(which(df[,1]=="A7"):which(df[,1]=="H9"))
+      if(letter=="D") row.to.get<-c(which(df[,1]=="A10"):which(df[,1]=="H12"))
+      
+    }else{ #48Cells
+      
+      if(letter=="A") row.to.get<-grep("Flowcell 1", df$Kommentar)
+      if(letter=="B") row.to.get<-grep("Flowcell 2", df$Kommentar)
+      if(letter=="C") row.to.get<-grep("Flowcell 3", df$Kommentar)
+      if(letter=="D") row.to.get<-grep("Flowcell 4", df$Kommentar)
+      
+    }
+  }else{
+    
+    if(letter=="A") row.to.get<-c(1:48)
+    if(letter=="B") row.to.get<-c(49:96)
     
   }
-  
   #Changes to use Barcode instead Labware#
   df<-df[row.to.get,c("Barcode","SequenceID")]
   
@@ -39,5 +46,6 @@ library("readxl")
   df<-df[,c(2,1)]
   
   write.table(df, paste(dirs,"/",oppsettname,".tsv",sep = ""), col.names = FALSE, sep = "\t", row.names = FALSE, quote = FALSE)
-
-
+  
+  
+  
