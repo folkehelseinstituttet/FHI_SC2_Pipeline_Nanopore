@@ -20,10 +20,13 @@ if(length(grep(".csv$",files))==1){
     df<-apply(df,2,as.character)
     
     colnames(df)<-c("Posisjon  på PCR-plate",	"SequenceID",	"Barcode",	"Stamme-LabWare No.",	"Kons. (Ct.)")
-    df$Barcode<-gsub("BC","barcode",df$Barcode)
+   
     dummy<-as.data.frame(t(colnames(df)))
+    
     colnames(dummy)<-colnames(df)
+    
     df<-rbind(dummy, df)
+    df$Barcode<-gsub("BC","barcode",df$Barcode)
   
     colnames(df)<-rep(" ",ncol(df))
     colnames(df)[2]<-gsub("-","",Sys.Date())
