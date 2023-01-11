@@ -14,7 +14,7 @@ if(length(grep(".csv$",files))==1){
     opname<-gsub(".*Exp_","",file.toget)
     opname<-gsub("_[0-9]+.csv","",opname)
     
-    df<-read.csv(file.toget, stringsAsFactors = TRUE)
+    df<-read.csv(file.toget, stringsAsFactors = FALSE)
     df$dummy<-NA
     df<-df[,c(1,2,3,5,4)]
     df<-apply(df,2,as.character)
