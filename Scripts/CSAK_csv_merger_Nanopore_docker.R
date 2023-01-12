@@ -46,6 +46,7 @@ csvs <- list.files(input.folder, full.names = TRUE, pattern = "\\.csv$")
   df.summ$name<-rownames(df.summ)
   
   df.summ$name<-gsub("^X", "", df.summ$name) #Nanopore fix
+  if(length(grep("\\.SC2",df.summ$name))>0) df.summ$name<-gsub("\\.SC2","-SC2",df.summ$name)
   #names(df.pango)[which(names(df.pango)=="taxon")]<-"name" #Updated 20May2021
 
   
