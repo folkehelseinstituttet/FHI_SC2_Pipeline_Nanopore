@@ -44,6 +44,7 @@ if [ ${1} == "ArticV3" ]; then
 	max=700
 	cp /home/docker/CommonFiles/artic-ncov2019/primer_schemes/nCoV-2019/V3/nCoV-2019.primer.bed /home/docker/Fastq/primers.bed
 fi
+
 if [ ${1} == "ArticV4" ]; then
 	primer_schemes=/home/docker/CommonFiles/artic-ncov2019/primer_schemes
 	schemes_sample=nCoV-2019/V4.1
