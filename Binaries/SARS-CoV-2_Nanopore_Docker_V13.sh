@@ -26,7 +26,7 @@ if [ ${1} == "Midnight" ]; then
 
 fi
 
-if [ ${1} == "ArticV3" ]; then
+if [ ${1} == "ArticV3.2" ]; then
 	primer_schemes=/home/docker/CommonFiles/artic-ncov2019/primer_schemes
 	schemes_sample=nCoV-2019/V3.2
 	SpikeRef=/home/docker/CommonFiles/artic-ncov2019/primer_schemes/nCoV-2019/V3.2/nCoV-2019.spike.fa
@@ -35,6 +35,15 @@ if [ ${1} == "ArticV3" ]; then
 	cp /home/docker/CommonFiles/artic-ncov2019/primer_schemes/nCoV-2019/V3.2/nCoV-2019.primer.bed /home/docker/Fastq/primers.bed
 fi
 
+
+if [ ${1} == "ArticV3" ]; then
+	primer_schemes=/home/docker/CommonFiles/artic-ncov2019/primer_schemes
+	schemes_sample=nCoV-2019/V3
+	SpikeRef=/home/docker/CommonFiles/artic-ncov2019/primer_schemes/nCoV-2019/V3/nCoV-2019.spike.fa
+	min=200
+	max=700
+	cp /home/docker/CommonFiles/artic-ncov2019/primer_schemes/nCoV-2019/V3/nCoV-2019.primer.bed /home/docker/Fastq/primers.bed
+fi
 if [ ${1} == "ArticV4" ]; then
 	primer_schemes=/home/docker/CommonFiles/artic-ncov2019/primer_schemes
 	schemes_sample=nCoV-2019/V4.1
