@@ -1,4 +1,5 @@
-FROM garcianacho/fhibasenanopore:31052022
+#FROM garcianacho/fhibasenanopore:31052022
+FROM rasmuskriis/artic_conda_env:latest
 LABEL maintainer="Nacho Garcia <iggl@fhi.no>"
 
 COPY CommonFiles/ /home/docker/CommonFiles/
