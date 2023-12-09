@@ -179,7 +179,8 @@ for dir in $(ls -d */)
 do
 	cd ${dir} 
 	
-	artic minion --medaka --medaka-model r941_min_high_g351 --normalise 200 --threads 8 --scheme-directory ${primer_schemes} --read-file ${dir%/}_.fastq --sequencing-summary ${basedir}/${summary} ${schemes_sample} ${dir%/}
+	artic minion --medaka --medaka-model r1041_e8.2_400bps_v4.2 --normalise 200 --threads 8 --scheme-directory ${primer_schemes} --read-file ${dir%/}_.fastq --sequencing-summary ${basedir}/${summary} ${schemes_sample} ${dir%/}
+	#artic minion --medaka --medaka-model r941_min_high_g351 --normalise 200 --threads 8 --scheme-directory ${primer_schemes} --read-file ${dir%/}_.fastq --sequencing-summary ${basedir}/${summary} ${schemes_sample} ${dir%/}
 	#artic minion --medaka --medaka-model r941_min_high_g434 --normalise 200 --threads 8 --scheme-directory ${primer_schemes} --read-file ${dir%/}_.fastq --sequencing-summary ${basedir}/${summary} ${schemes_sample}  ${dir%/}
 	cd "${fastq_pass}"
 
