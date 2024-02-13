@@ -1,7 +1,7 @@
 ### Stanford resistance information ###
 
 # Load the CSV file with resistance information for the 3CLpro gene from Stanford. Downloaded from here: https://covdb.stanford.edu/drms/3clpro/
-data <- read.csv("N:/Virologi/JonBrate/Drug resistance SARSCOV2/data/2024.01.12_3CLpro_inhibitors.csv")
+data <- read.csv("/home/docker/CommonFiles/2024.01.12_3CLpro_inhibitors.csv")
 
 # Rename columns
 colnames(data)[1] <- "stanford_res"
