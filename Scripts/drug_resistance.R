@@ -26,7 +26,9 @@ data$nextclade_position <- data$stanford_position + 3263
 ### Nextclade output ###
 
 # Read the nextclade output to get the different mutations
-nextclade <- read.table("C:/Users/jonr/Downloads/OppsettNGSSEQ20240125-01A_NextcladeAndPangolin.csv",
+# TODO: Make a more robust check that only one file is listed and that it is the corret file
+infile <- list.files("/home/docker/Fastq/", pattern = "_NextcladeAndPangolin.csv$", full.names = TRUE, recursive=TRUE)
+nextclade <- read.table(infile[1],
                         header = TRUE,
                         sep = "\t",
                         stringsAsFactors = FALSE)
@@ -115,4 +117,4 @@ aggregated_data <- merge(aggregated_data, pax_low_res_data, by = "name", all.x =
 
 ### Write final data ###
 # Write the final data as a tsv file
-write.table(aggregated_data, file = "stanford_3clpro_resistance.tsv", sep = "\t", row.names = FALSE, quote = FALSE)
+write.table(aggregated_data, file = "/home/docker/Fastq/stanford_3clpro_resistance.tsv", sep = "\t", row.names = FALSE, quote = FALSE)
