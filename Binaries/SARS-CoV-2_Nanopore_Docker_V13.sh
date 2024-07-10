@@ -333,9 +333,10 @@ cp /home/docker/Fastq/Spike_Aligned.fa ${startdir2}/${runname}_summaries/fasta/$
 
 mkdir nextcladenew
 cp  ${startdir2}/${runname}_summaries/fasta/${runname}.fa nextcladenew  
-source activate nextclade
+source activate nextclade2
 nextclade dataset get --name 'sars-cov-2' --output-dir '/home/docker/nc_sars-cov-2'
-nextclade --input-fasta nextcladenew/${runname}.fa --input-dataset /home/docker/nc_sars-cov-2 --output-csv nextcladenew/${runname}_Nextclade.new.results.csv
+#nextclade --input-fasta nextcladenew/${runname}.fa --input-dataset /home/docker/nc_sars-cov-2 --output-csv nextcladenew/${runname}_Nextclade.new.results.csv
+nextclade --input-dataset /home/docker/nc_sars-cov-2 --output-csv=nextcladenew/${runname}_Nextclade.new.results.csv nextcladenew/${runname}.fa
 cp /home/docker/nc_sars-cov-2/tag.json /home/docker/ncv.json
 ncdb=$(grep "tag" /home/docker/ncv.json | cut -d ":" -f2-)
 ncv=$(nextclade -v)
