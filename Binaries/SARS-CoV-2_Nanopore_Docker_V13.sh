@@ -319,7 +319,12 @@ conda deactivate
 
 cp  ${startdir2}/${runname}_summaries/fasta/${runname}_pangolin_out.csv ${startdir2}/${runname}_summaries/PreSummaries/${runname}_pangolin_out.csv 
 
-nextclade --input-fasta ${startdir2}/${runname}_summaries/fasta/${runname}.fa --output-csv ${startdir2}/${runname}_summaries/${runname}_Nextclade.results.csv
+
+source activate nextclade2
+#nextclade --input-fasta ${startdir2}/${runname}_summaries/fasta/${runname}.fa --output-csv ${startdir2}/${runname}_summaries/${runname}_Nextclade.results.csv
+nextclade run --output-csv=${startdir2}/${runname}_summaries/${runname}_Nextclade.results.csv ${startdir2}/${runname}_summaries/fasta/${runname}.fa
+conda deactivate
+
 nextalign  --sequences=${startdir2}/${runname}_summaries/fasta/${runname}.fa --reference=/home/docker/CommonFiles/reference_nc.fasta \
  --genemap=/home/docker/CommonFiles/genemap.gff --genes=E,M,N,ORF1a,ORF1b,ORF3a,ORF6,ORF7a,ORF7b,ORF8,ORF9b,S --output-dir=/home/docker/Fastq --output-basename=${runname}
 
