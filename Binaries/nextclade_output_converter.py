@@ -21,7 +21,7 @@ def handleoutput(aasubs,aadels):
 with open(sys.argv[1]) as infile:
 	clades = csv.reader(infile,delimiter=";")
 	header = next(clades)
-	namecol = 0
+	namecol = 1
 	try:
 		aasubcol = header.index("aaSubstitutions")
 		aadelcol = header.index("aaDeletions")
