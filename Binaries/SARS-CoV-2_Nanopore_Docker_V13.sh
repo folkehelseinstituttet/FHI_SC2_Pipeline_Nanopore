@@ -319,10 +319,11 @@ conda deactivate
 
 cp  ${startdir2}/${runname}_summaries/fasta/${runname}_pangolin_out.csv ${startdir2}/${runname}_summaries/PreSummaries/${runname}_pangolin_out.csv 
 
-
+echo "NEXTCLAE01"
 source activate nextclade2
+nextclade dataset get --name 'sars-cov-2' --output-dir '/home/docker/nc_sars-cov-2'
 #nextclade --input-fasta ${startdir2}/${runname}_summaries/fasta/${runname}.fa --output-csv ${startdir2}/${runname}_summaries/${runname}_Nextclade.results.csv
-nextclade run --output-csv=${startdir2}/${runname}_summaries/${runname}_Nextclade.results.csv ${startdir2}/${runname}_summaries/fasta/${runname}.fa
+nextclade run --input-dataset /home/docker/nc_sars-cov-2 --output-csv=${startdir2}/${runname}_summaries/${runname}_Nextclade.results.csv ${startdir2}/${runname}_summaries/fasta/${runname}.fa
 conda deactivate
 
 nextalign  --sequences=${startdir2}/${runname}_summaries/fasta/${runname}.fa --reference=/home/docker/CommonFiles/reference_nc.fasta \
@@ -336,6 +337,7 @@ mv /home/docker/Fastq/*aligned.fasta /home/docker/Fastq/MultifastaForSpike.fasta
 Rscript /home/docker/Scripts/SpikeExtractorv2.R
 cp /home/docker/Fastq/Spike_Aligned.fa ${startdir2}/${runname}_summaries/fasta/${runname}_Spike.fa
 
+echo "NEXTCLAE02"
 mkdir nextcladenew
 cp  ${startdir2}/${runname}_summaries/fasta/${runname}.fa nextcladenew  
 source activate nextclade2
