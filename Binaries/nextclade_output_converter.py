@@ -38,11 +38,17 @@ with open(sys.argv[1]) as infile:
 		muts = row[aasubcol]
 		dels = row[aadelcol]
 		allchanges = handleoutput(muts,dels)
-		if len(allchanges['S']) <= 22:
-			allchanges['S2']=""
-		if len(allchanges['S']) > 22:
-			allchanges['S2'] = allchanges['S'][22:]
-			allchanges['S'] = allchanges['S'][0:22]			
+        if len(allchanges['S']) <= 22:
+            allchanges['S2'] = []
+            allchanges['S3'] = []
+        elif len(allchanges['S']) <= 44:
+            allchanges['S2'] = allchanges['S'][22:]
+            allchanges['S'] = allchanges['S'][:22]
+            allchanges['S3'] = []
+        else:
+            allchanges['S3'] = allchanges['S'][44:]
+            allchanges['S2'] = allchanges['S'][22:44]
+            allchanges['S'] = allchanges['S'][:22]
 		outstring = ''
 		for prot in ["ORF1a", "ORF1b","S","S2","ORF3a","E","M","ORF6","ORF7a","ORF7b","ORF8","N","ORF9b","ORF14","ORF10"]:
 			outstring += ";".join(allchanges[prot])
