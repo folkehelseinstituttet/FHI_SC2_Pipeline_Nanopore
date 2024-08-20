@@ -319,7 +319,7 @@ conda deactivate
 
 cp  ${startdir2}/${runname}_summaries/fasta/${runname}_pangolin_out.csv ${startdir2}/${runname}_summaries/PreSummaries/${runname}_pangolin_out.csv 
 
-echo "NEXTCLAE01"
+
 source activate nextclade2
 nextclade dataset get --name 'sars-cov-2' --output-dir '/home/docker/nc_sars-cov-2'
 #nextclade --input-fasta ${startdir2}/${runname}_summaries/fasta/${runname}.fa --output-csv ${startdir2}/${runname}_summaries/${runname}_Nextclade.results.csv
