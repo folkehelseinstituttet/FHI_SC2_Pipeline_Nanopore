@@ -6,13 +6,15 @@ nc<-read.csv(nc.file[1], sep = "\t")
 nc.new<-read.csv(nc.new.file[1], sep = ";")
 pango<-read.csv(pango.file[1])
 
-nc$dummy<-rownames(nc)
-rownames(nc)<-NULL
-nc<-nc[,c(length(nc), 1:(ncol(nc)-1))]
-names<-colnames(nc)
-nc<-nc[,-ncol(nc)]
-colnames(nc)<-names[-1]
-colnames(pango)[1]<-"name"
+#nc$dummy<-rownames(nc)
+#rownames(nc)<-NULL
+#nc<-nc[,c(length(nc), 1:(ncol(nc)-1))]
+#names<-colnames(nc)
+#nc<-nc[,-ncol(nc)]
+#colnames(nc)<-names[-1]
+#colnames(pango)[1]<-"name"
+
+
 pango$taxon<-pango$name
 ncpango<-merge(nc, pango[,c("name","lineage","version","pangolin_version","taxon")], by="name", all=TRUE)
 
