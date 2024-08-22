@@ -12,12 +12,10 @@ pango<-read.csv(pango.file[1])
 #names<-colnames(nc)
 #nc<-nc[,-ncol(nc)]
 #colnames(nc)<-names[-1]
-#colnames(pango)[1]<-"name"
 
-
+colnames(pango)[1]<-"name"
 pango$taxon<-pango$name
 ncpango<-merge(nc, pango[,c("name","lineage","version","pangolin_version","taxon")], by="name", all=TRUE)
-
 colnames(nc.new)[2]<-"name"
 try(nc.new$clade<-paste(nc.new$clade, nc.new$Nextclade_pango,sep = "/"))
 ncpango<-merge(ncpango, nc.new[,c("name", "clade")], by="name", all=TRUE)
