@@ -66,11 +66,11 @@ fi
 
 if [ ${1} == "ArticV5" ]; then
 	primer_schemes=/home/docker/CommonFiles/artic-ncov2019/primer_schemes
-	schemes_sample=nCoV-2019/V5.3.2
-	SpikeRef=/home/docker/CommonFiles/artic-ncov2019/primer_schemes/nCoV-2019/V5.3.2/nCoV-2019.spike.fa
+	schemes_sample=nCoV-2019/V5.4.2
+	SpikeRef=/home/docker/CommonFiles/artic-ncov2019/primer_schemes/nCoV-2019/V5.4.2/nCoV-2019.spike.fa
 	min=200
 	max=700
-	cp /home/docker/CommonFiles/artic-ncov2019/primer_schemes/nCoV-2019/V5.3.2/nCoV-2019.primer.bed /home/docker/Fastq/primers.bed
+	cp /home/docker/CommonFiles/artic-ncov2019/primer_schemes/nCoV-2019/V5.4.2/nCoV-2019.primer.bed /home/docker/Fastq/primers.bed
 fi
 
 
