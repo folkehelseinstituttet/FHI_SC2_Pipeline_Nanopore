@@ -69,6 +69,14 @@ for row in clades:
         allchanges['S4'] = allchanges['S'][66:88]
         allchanges['S5'] = allchanges['S'][88:]
 
+        # Splitting 'ORF1a' into 'ORF1a' and 'ORF1a_1'
+    if 'ORF1a' in allchanges:
+        if len(allchanges['ORF1a']) <= 22:
+            allchanges['ORF1a_1'] = []
+        else:
+            allchanges['ORF1a_1'] = allchanges['ORF1a'][22:]
+            allchanges['ORF1a'] = allchanges['ORF1a'][:22]
+
 
         outstring = ''
         for prot in ["ORF1a", "ORF1b", "S", "S2", "S3", "ORF3a", "E", "M", "ORF6", "ORF7a", "ORF7b", "ORF8", "N", "ORF9b", "ORF14", "ORF10"]:
