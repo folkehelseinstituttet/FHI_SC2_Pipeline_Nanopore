@@ -6,7 +6,7 @@ import sys, csv, re
 
 def handleoutput(aasubs, aadels):
     '''Takes a row's values for aa mutations and aa deletions and returns in dic form'''
-    outputdic = {k: [] for k in ["ORF1a", "ORF1b", "S", "S2", "S3", "ORF3a", "E", "M", "ORF6", "ORF7a", "ORF7b", "ORF8", "N", "ORF9b", "ORF14", "ORF10"]}
+    outputdic = {k: [] for k in ["ORF1a", "ORF1b", "S", "S2", "S3", "S4", "S5", "ORF3a", "E", "M", "ORF6", "ORF7a", "ORF7b", "ORF8", "N", "ORF9b", "ORF14", "ORF10"]}
     subs = aasubs.split(",")
     dels = aadels.split(",") if not aadels.split(",") == [''] else []
     # if dels == ['']:
@@ -29,7 +29,7 @@ with open(sys.argv[1]) as infile:
         aasubcol = 17
         aadelcol = 19
 
-    output = ["name", "ORF1a", "ORF1b", "S", "S2", "S3", "ORF3a", "E", "M", "ORF6", "ORF7a", "ORF7b", "ORF8", "N", "ORF9b", "ORF14", "ORF10"]
+    output = ["name", "ORF1a", "ORF1b", "S", "S2", "S3", "S4", "S5", "ORF3a", "E", "M", "ORF6", "ORF7a", "ORF7b", "ORF8", "N", "ORF9b", "ORF14", "ORF10"]
     outstring = "\t".join(output)
     print(outstring)
 
