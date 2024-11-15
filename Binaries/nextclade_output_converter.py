@@ -33,53 +33,53 @@ with open(sys.argv[1]) as infile:
     outstring = "\t".join(output)
     print(outstring)
 
-for row in clades:
-    name = row[namecol]
-    muts = row[aasubcol]
-    dels = row[aadelcol]
-    allchanges = handleoutput(muts, dels)
+    for row in clades:
+        name = row[namecol]
+        muts = row[aasubcol]
+        dels = row[aadelcol]
+        allchanges = handleoutput(muts, dels)
 
-    if len(allchanges['S']) <= 22:
-        allchanges['S2'] = []
-        allchanges['S3'] = []
-        allchanges['S4'] = []
-        allchanges['S5'] = []
-    elif len(allchanges['S']) <= 44:
-        allchanges['S2'] = allchanges['S'][22:]
-        allchanges['S'] = allchanges['S'][:22]
-        allchanges['S3'] = []
-        allchanges['S4'] = []
-        allchanges['S5'] = []
-    elif len(allchanges['S']) <= 66:
-        allchanges['S2'] = allchanges['S'][22:44]
-        allchanges['S'] = allchanges['S'][:22]
-        allchanges['S3'] = allchanges['S'][44:]
-        allchanges['S4'] = []
-        allchanges['S5'] = []
-    elif len(allchanges['S']) <= 88:
-        allchanges['S2'] = allchanges['S'][22:44]
-        allchanges['S'] = allchanges['S'][:22]
-        allchanges['S3'] = allchanges['S'][44:66]
-        allchanges['S4'] = allchanges['S'][66:]
-        allchanges['S5'] = []
-    else:
-        allchanges['S2'] = allchanges['S'][22:44]
-        allchanges['S'] = allchanges['S'][:22]
-        allchanges['S3'] = allchanges['S'][44:66]
-        allchanges['S4'] = allchanges['S'][66:88]
-        allchanges['S5'] = allchanges['S'][88:]
-
-        # Splitting 'ORF1a' into 'ORF1a' and 'ORF1a_1'
-    if 'ORF1a' in allchanges:
-        if len(allchanges['ORF1a']) <= 22:
-            allchanges['ORF1a_1'] = []
+        if len(allchanges['S']) <= 22:
+            allchanges['S2'] = []
+            allchanges['S3'] = []
+            allchanges['S4'] = []
+            allchanges['S5'] = []
+        elif len(allchanges['S']) <= 44:
+            allchanges['S2'] = allchanges['S'][22:]
+            allchanges['S'] = allchanges['S'][:22]
+            allchanges['S3'] = []
+            allchanges['S4'] = []
+            allchanges['S5'] = []
+        elif len(allchanges['S']) <= 66:
+            allchanges['S2'] = allchanges['S'][22:44]
+            allchanges['S'] = allchanges['S'][:22]
+            allchanges['S3'] = allchanges['S'][44:]
+            allchanges['S4'] = []
+            allchanges['S5'] = []
+        elif len(allchanges['S']) <= 88:
+            allchanges['S2'] = allchanges['S'][22:44]
+            allchanges['S'] = allchanges['S'][:22]
+            allchanges['S3'] = allchanges['S'][44:66]
+            allchanges['S4'] = allchanges['S'][66:]
+            allchanges['S5'] = []
         else:
-            allchanges['ORF1a_1'] = allchanges['ORF1a'][22:]
-            allchanges['ORF1a'] = allchanges['ORF1a'][:22]
+            allchanges['S2'] = allchanges['S'][22:44]
+            allchanges['S'] = allchanges['S'][:22]
+            allchanges['S3'] = allchanges['S'][44:66]
+            allchanges['S4'] = allchanges['S'][66:88]
+            allchanges['S5'] = allchanges['S'][88:]
+
+            # Splitting 'ORF1a' into 'ORF1a' and 'ORF1a_1'
+        if 'ORF1a' in allchanges:
+            if len(allchanges['ORF1a']) <= 22:
+                allchanges['ORF1a_1'] = []
+            else:
+                allchanges['ORF1a_1'] = allchanges['ORF1a'][22:]
+                allchanges['ORF1a'] = allchanges['ORF1a'][:22]
 
 
         outstring = ''
-        for prot in ["ORF1a", "ORF1b", "S", "S2", "S3", "ORF3a", "E", "M", "ORF6", "ORF7a", "ORF7b", "ORF8", "N", "ORF9b", "ORF14", "ORF10"]:
+        for prot in ["ORF1a", "ORF1b", "S", "S2", "S3", "S4", "S5", "ORF3a", "E", "M", "ORF6", "ORF7a", "ORF7b", "ORF8", "N", "ORF9b", "ORF14", "ORF10"]:
             outstring += ";".join(allchanges[prot])
             outstring += "\t"
         outstring = outstring.rstrip()
