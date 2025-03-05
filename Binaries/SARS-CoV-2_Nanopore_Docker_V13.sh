@@ -16,7 +16,7 @@ scriptdir=/home/docker/Scripts/
 SpikeRef=/home/docker/CommonFiles/artic-ncov2019/primer_schemes/nCoV-2019/V3.2/nCoV-2019.spike.fa
 cd ${startdir}
 
-if [ ${1} == "Midnight" ]; then
+if [ ${1} == "MID" ]; then
 	primer_schemes=/home/docker/CommonFiles/artic-ncov2019/primer_schemes
 	schemes_sample=nCoV-2019/V9
 	SpikeRef=/home/docker/CommonFiles/artic-ncov2019/primer_schemes/nCoV-2019/V9/nCoV-2019.spike.fa
@@ -75,7 +75,7 @@ fi
 
 
 if [[ ${1} ]]; then  
-if [ ${1} != "ArticV3" ] && [ ${1} != "MidnightV3" ] && [ ${1} != "ArticV4" ]&& [ ${1} != "ArticV5" ] ; then
+if [ ${1} != "ArticV3" ] && [ ${1} != "MID" ] && [ ${1} != "ArticV4" ]&& [ ${1} != "ArticV5" ] ; then
        echo "
   _  _ ___ _ 
  | \| | _ ) |
