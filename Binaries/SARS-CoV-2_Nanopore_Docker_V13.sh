@@ -8,7 +8,7 @@
 
 # henter ut året for 2 dager siden  (ved årsskiftet vil et run kunne tilhøre året før)
 year=$([ "$OSTYPE" = linux-gnu ] && date --date="2 days ago" +"%Y" || date -v-2d +"%Y")	                       
-echo "Available primersets Midnight, ArticV3 and ArticV4"
+echo "Available primersets MID, ArticV3 and ArticV4"
 startdir=$(pwd)
 cd ~
 homedir=$(pwd)
@@ -83,7 +83,7 @@ if [ ${1} != "ArticV3" ] && [ ${1} != "MID" ] && [ ${1} != "ArticV4" ]&& [ ${1} 
  |_|\_|___(_)
 
             NÅ SKREV DU FEIL 
-            Du skrev ${1} som input istedenfor ArticV3, ArticV4, Midnight 
+            Du skrev ${1} som input istedenfor ArticV3, ArticV4, MID 
 #############################################################################"
         exit 1
     else  
@@ -105,7 +105,7 @@ else
  | .  | _ \_|
  |_|\_|___(_)
  
-            Du har glemt å skrive ArticV3, ArticV4, Midnight 
+            Du har glemt å skrive ArticV3, ArticV4, MID 
 #############################################################################  
 
 
@@ -119,7 +119,7 @@ Rscript --vanilla /home/docker/Scripts/Csv2Excel.R
 Rscript --vanilla /home/docker/Scripts/CSAK_Excel_to_tsv_docker.R "${startdir}"
 
 cd $(ls -d */)
-cd Oppsett*/
+cd SAR*/
 
 startdir2=$(pwd)
 
