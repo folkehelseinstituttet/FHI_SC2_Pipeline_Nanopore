@@ -8,7 +8,7 @@ library("readxl")
   files <- list.files(args[1],full.names = TRUE,recursive = FALSE)
   dirs <- list.dirs(args[1], full.names = TRUE,recursive = FALSE) 
   dirs <- list.dirs(dirs, full.names = TRUE,recursive = FALSE) 
-  dirs <- dirs[grep("Oppsett", dirs)]
+  dirs <- dirs[grep("SAR", dirs)]
   df<- read_excel(files[grep(".xlsx", files)])
   colnames(df)<-df[1,]
   df<-df[-1,]
